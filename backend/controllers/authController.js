@@ -67,4 +67,16 @@ const loginUser = async (req, res) => {
   }
 };
 
-module.exports = { registerUser, loginUser };
+// @route  GET /api/users/trainers
+// @access Admin only
+const getTrainers = async (req, res) => {
+  try {
+    const trainers = await User.find({ role: 'trainer' }).select('name email');
+    res.json(trainers);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+module.exports = { registerUser, loginUser, getTrainers };
+
