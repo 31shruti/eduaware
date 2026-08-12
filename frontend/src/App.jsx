@@ -9,6 +9,7 @@ import SchoolDashboard from './pages/school/SchoolDashboard';
 import AdminDashboard from './pages/admin/AdminDashboard';
 import TrainerDashboard from './pages/trainer/TrainerDashboard';
 import StudentDashboard from './pages/student/StudentDashboard';
+import ProtectedRoute from './components/ProtectedRoute';
 
 function App() {
   return (
@@ -20,11 +21,39 @@ function App() {
           <Route path="/trainer-auth" element={<TrainerAuth />} />
           <Route path="/school-auth" element={<SchoolAuth />} />
           <Route path="/admin-auth" element={<AdminAuth />} />
-          <Route path="/school-dashboard" element={<SchoolDashboard />} />
-          <Route path="/admin-dashboard" element={<AdminDashboard />} />
-          <Route path="/trainer-dashboard" element={<TrainerDashboard />} />
-          <Route path="/student-dashboard" element={<StudentDashboard />} />
-          
+
+          <Route
+            path="/school-dashboard"
+            element={
+              <ProtectedRoute allowedRole="school">
+                <SchoolDashboard />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin-dashboard"
+            element={
+              <ProtectedRoute allowedRole="admin">
+                <AdminDashboard />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/trainer-dashboard"
+            element={
+              <ProtectedRoute allowedRole="trainer">
+                <TrainerDashboard />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/student-dashboard"
+            element={
+              <ProtectedRoute allowedRole="student">
+                <StudentDashboard />
+              </ProtectedRoute>
+            }
+          />
         </Routes>
       </BrowserRouter>
     </AuthProvider>
