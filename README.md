@@ -79,7 +79,7 @@ eduaware/
 
 ### 1. Clone the repository
 ```bash
-git clone https://github.com/YOUR_USERNAME/eduaware.git
+git clone https://github.com/31shruti/eduaware.git
 cd eduaware
 ```
 
